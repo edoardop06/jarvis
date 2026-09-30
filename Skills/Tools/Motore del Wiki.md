@@ -5,8 +5,8 @@ status: active
 domain: ai_os
 updated: 2026-09-30
 expose: true
-summary: "Lo strumento che fa il lavoro meccanico sul wiki: ricerca, chi cita chi, pagine orfane e collegamenti mancanti. Sta in System/scripts/wiki.py."
-triggers: "cerca nel vault, dove ho scritto, chi cita questa nota, pagine orfane, collegamenti mancanti, salute del wiki, registro della conoscenza"
+summary: "Lo strumento del wiki: ricerca nelle note, citazioni, pagine orfane, collegamenti mancanti."
+triggers: "cerca nel vault, chi cita questa nota, pagine orfane, collegamenti mancanti, registro della conoscenza"
 ---
 
 # Motore del Wiki

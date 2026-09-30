@@ -10,6 +10,18 @@ Versions are git tags. To see which one you have: `git -C System describe --tags
 
 ---
 
+## Jarvis v1.3 (2026-09-30)
+
+**Fixed**
+
+- **Updating to v1.2 blocked every save.** The six new procedures link to `Atlas Log`, the record of what happened to your knowledge. A new vault gets it from the template, but an update only replaces `System/`, so a vault installed before v1.2 had links to a page it did not have, and the check before every save refused them. The update now creates `Atlas Log` when it is missing, and never touches it again after that. Its opening text no longer links to the procedures, so going back to an older version leaves nothing broken.
+
+**Changed**
+
+- **Shorter descriptions for the procedures agents see at startup.** The list was at 82% of the space an agent loads when it starts, and past 100% some procedures are silently never offered. Fourteen summaries and trigger lists were cut, mostly the six added in v1.2; the list is now at 69%. Nothing a procedure does has changed.
+
+---
+
 ## Jarvis v1.2 (2026-09-30)
 
 **Added**

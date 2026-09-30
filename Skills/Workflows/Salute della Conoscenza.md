@@ -5,8 +5,8 @@ status: active
 domain: ai_os
 updated: 2026-09-30
 expose: true
-summary: "Controllo periodico della conoscenza: contraddizioni, affermazioni superate, pagine orfane e buchi da colmare. Lo script conta, l'agente giudica."
-triggers: "controlla il vault, salute del wiki, cosa manca, ci sono contraddizioni, il vault è in ordine, manutenzione della conoscenza, cosa dovrei approfondire"
+summary: "Controllo periodico della conoscenza: contraddizioni, pagine superate o orfane, buchi da colmare."
+triggers: "controlla il vault, salute del wiki, ci sono contraddizioni, cosa dovrei approfondire"
 ---
 
 # Salute della Conoscenza

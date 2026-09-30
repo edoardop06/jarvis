@@ -22,8 +22,9 @@ possono contare e filtrare senza aprire il file. I tipi sono tre: `ingest` per
 una fonte lavorata, `query` per una risposta archiviata, `lint` per un
 controllo di salute, `ricerca` per una lacuna colmata andando a cercare fuori.
 
-Vedi [[System/Skills/Workflows/Ingerire una Fonte|Ingerire una Fonte]],
-[[System/Skills/Workflows/Interrogare il Vault|Interrogare il Vault]] e
-[[System/Skills/Workflows/Salute della Conoscenza|Salute della Conoscenza]].
+Le procedure che lo scrivono sono Ingerire una Fonte, Interrogare il Vault,
+Salute della Conoscenza e Ricerca Autonoma, in `System/Skills/Workflows/`. Qui
+non sono collegamenti, perché questo file resta anche se il sistema torna a una
+versione che non le ha.
 
 ---

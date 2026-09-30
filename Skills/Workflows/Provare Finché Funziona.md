@@ -5,8 +5,8 @@ status: active
 domain: ai_os
 updated: 2026-09-30
 expose: true
-summary: "Far funzionare una cosa provando: si stabilisce prima come si riconosce che funziona, si cambia una cosa per volta e ci si ferma dopo tre prove che non spostano niente."
-triggers: "fallo funzionare, non funziona, prova finché non funziona, testa questo, rendilo più veloce, ottimizza, mettici mano finché va, sistemalo"
+summary: "Far funzionare una cosa provando: misura decisa prima, un cambio per volta, stop dopo tre prove a vuoto."
+triggers: "fallo funzionare, non funziona, prova finché non funziona, rendilo più veloce, sistemalo"
 ---
 
 # Provare Finché Funziona

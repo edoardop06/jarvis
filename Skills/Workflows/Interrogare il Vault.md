@@ -5,8 +5,8 @@ status: active
 domain: ai_os
 updated: 2026-09-30
 expose: true
-summary: "Rispondere partendo da quello che il vault sa già, con le fonti citate, e archiviare la risposta quando vale più della conversazione."
-triggers: "cosa so di, cosa avevamo detto, dove ho scritto, riassumimi, confronta, secondo il vault, cosa sappiamo, ricordami come funziona"
+summary: "Rispondere dalle note con le fonti citate, e archiviare le risposte che valgono."
+triggers: "cosa so di, cosa avevamo detto, dove ho scritto, riassumimi, secondo il vault"
 ---
 
 # Interrogare il Vault

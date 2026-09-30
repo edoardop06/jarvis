@@ -5,7 +5,7 @@ status: stable
 domain: ai_os
 updated: 2026-07-07
 summary: "A five-gate loop and standing habits so any model runs hard tasks with the same discipline."
-triggers: "hard multi-step task, dependent unknowns, debugging where the first theory may be wrong, work needing verification before handoff, Fable mode, slow down and do this right"
+triggers: "hard multi-step task, debugging where the first theory may be wrong, verify before handoff, Fable mode, slow down and do this right"
 expose: true
 ---
 

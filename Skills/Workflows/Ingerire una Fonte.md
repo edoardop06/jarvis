@@ -5,8 +5,8 @@ status: active
 domain: ai_os
 updated: 2026-09-30
 expose: true
-summary: "Lavorare una fonte nuova dentro il wiki: aggiorna le pagine che esistono già prima di crearne altre, e dichiara le contraddizioni invece di sovrascriverle."
-triggers: "ho letto questo articolo, ingerisci, lavora questa fonte, processa il sorgente, aggiungi al wiki, ho trovato questo, leggi questo pdf, elabora questa fonte"
+summary: "Portare una fonte nuova nel wiki: aggiorna le pagine esistenti e dichiara le contraddizioni."
+triggers: "ho letto questo articolo, ingerisci, lavora questa fonte, aggiungi al wiki, leggi questo pdf"
 ---
 
 # Ingerire una Fonte

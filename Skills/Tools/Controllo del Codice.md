@@ -5,8 +5,8 @@ status: active
 domain: ai_os
 updated: 2026-09-30
 expose: true
-summary: "Rilegge il codice appena cambiato: lo strumento decide quali file guardare e con quale lista di controlli, la rilettura la fa l'agente."
-triggers: "controlla il codice, rileggi il codice, controllo del codice, revisione del codice, code review, ocr, open code review, ho cambiato il programma, prima di salvare il codice, cerca errori nel programma"
+summary: "Rilegge il codice appena cambiato: lo strumento sceglie file e controlli, l'agente giudica."
+triggers: "controlla il codice, rileggi il codice, code review, ho cambiato il programma, cerca errori nel programma"
 ---
 
 # Controllo del Codice

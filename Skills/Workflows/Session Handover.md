@@ -4,7 +4,7 @@ type: workflow
 status: stable
 domain: ai_os
 updated: 2026-08-28
-summary: "Close a session so the next agent can act without seeing the conversation. Run System/scripts/handover.py, then do the judgement steps it lists."
+summary: "Close a session so the next agent can continue without the conversation."
 triggers: "wrap up, close the session, handover, hand over, let's finish for today, pick up tomorrow, end of session"
 expose: true
 ---

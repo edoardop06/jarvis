@@ -624,8 +624,29 @@ VIEWS = {
 VIEWS.update(_effort_output_views())
 
 
+# Template files that shared skills link to. An install copies the whole
+# template, but an update only replaces System/, so a vault installed before a
+# file joined the template would carry links to a page it does not have, and
+# the lint would block every save. They are created when missing and never
+# touched again: from then on they belong to the owner.
+SEED_IF_MISSING = ("Ideaverse/Atlas/Atlas Log.md",)
+
+
+def seed_missing(check: bool) -> list:
+    made = []
+    for rel in SEED_IF_MISSING:
+        src, dst = SYSTEM / "template" / rel, VAULT / rel
+        if dst.exists() or not src.exists():
+            continue
+        made.append(f"{rel} (created: new in this version)")
+        if not check:
+            dst.parent.mkdir(parents=True, exist_ok=True)
+            dst.write_text(src.read_text(encoding="utf-8"), encoding="utf-8")
+    return made
+
+
 def apply_views(check: bool) -> int:
-    changed = []
+    changed = seed_missing(check)
     for rel, views in VIEWS.items():
         path = VAULT / rel
         text = path.read_text(encoding="utf-8")

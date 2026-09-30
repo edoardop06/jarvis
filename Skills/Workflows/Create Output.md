@@ -5,7 +5,7 @@ status: stable
 domain: ai_os
 updated: 2026-08-28
 summary: "Produce a finished file rather than chat text: destination, naming, quality checks."
-triggers: "create a document, write a report, make a deck, build a spreadsheet, draft a letter, produce a deliverable, save this as a file"
+triggers: "create a document, write a report, make a deck, build a spreadsheet, draft a letter"
 expose: true
 ---
 

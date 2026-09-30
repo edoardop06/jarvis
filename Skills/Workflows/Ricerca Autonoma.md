@@ -5,8 +5,8 @@ status: active
 domain: ai_os
 updated: 2026-09-30
 expose: true
-summary: "Colmare una lacuna del vault cercando fuori: fonti pesate, dentro solo quelle che reggono, e si dichiara cosa resta incerto."
-triggers: "cerca informazioni su, approfondisci, il vault non lo sa, trova le fonti, documentati su, indaga, colma questa lacuna, ricerca autonoma"
+summary: "Colmare una lacuna cercando fuori: fonti pesate e incertezze dichiarate."
+triggers: "cerca informazioni su, approfondisci, il vault non lo sa, trova le fonti, documentati su"
 ---
 
 # Ricerca Autonoma
