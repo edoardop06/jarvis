@@ -7,5 +7,14 @@
   "remote_models": {},
   "telegram_allowed_ids": [],
   "timezone": "Europe/Rome",
-  "vault_name": "Jarvis"
+  "vault_name": "Jarvis",
+  "skills_on_demand": [
+    "changing-the-vault",
+    "create-vault-skill-note",
+    "personal-google",
+    "personal-outlook",
+    "tool-discord-bridge",
+    "tool-telegram-remote",
+    "working-from-a-clone"
+  ]
 }

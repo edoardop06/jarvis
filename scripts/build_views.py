@@ -351,8 +351,9 @@ def collect_skills(subdir):
 
 def _skill_rows(skills):
     lines = ["| Skill | Use when | Auto-loads |", "|---|---|---|"]
+    later = on_demand()
     for s in skills:
-        auto = "yes" if is_exposed(s) else ""
+        auto = ("on demand" if s.get("id") in later else "yes") if is_exposed(s) else ""
         lines.append(f"| {s['_link']} | {s.get('summary', '')} | {auto} |")
     return lines
 
@@ -406,6 +407,24 @@ def is_exposed(fm) -> bool:
     }
 
 
+def on_demand() -> set:
+    """Skill ids this vault keeps out of the startup list, from vault.config.json.
+
+    Every loader costs startup space in every session, and past the budget some
+    skills are silently never offered. A skill listed here keeps its row in the
+    Skill Map, marked "on demand", so an agent that finds nothing at startup
+    still reaches it; it just stops being offered unasked. Onboarding fills the
+    list with the integrations the owner does not use. Without the key every
+    exposed skill loads, as before.
+    """
+    try:
+        data = json.loads((VAULT / "vault.config.json").read_text(encoding="utf-8"))
+    except (OSError, ValueError):
+        return set()
+    ids = data.get("skills_on_demand", []) if isinstance(data, dict) else []
+    return {str(i).strip() for i in ids} if isinstance(ids, list) else set()
+
+
 def render_loader(fm) -> str:
     name = fm.get("id", "")
     desc = str(fm.get("summary", "")).rstrip(".")
@@ -436,8 +455,9 @@ def generate_loaders(check: bool):
     home for the content.
     """
     changed = []
+    later = on_demand()
     exposed = [s for s in collect_skills("Skills/Workflows") + collect_skills("Skills/Tools")
-               if is_exposed(s) and s.get("id")]
+               if is_exposed(s) and s.get("id") and s["id"] not in later]
     wanted = {s["id"] for s in exposed}
     for rel_dir in SKILL_TARGETS:
         skills_dir = VAULT / rel_dir

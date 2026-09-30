@@ -538,8 +538,10 @@ def warn_skill_list_budget():
     verdict = "over" if total > SKILL_LIST_BUDGET_CHARS else "close to"
     return [f"Skill list is {pct:.0f}% of what agents load at startup "
             f"({total:,} of {SKILL_LIST_BUDGET_CHARS:,} characters, {verdict} the limit). "
-            f"Past it, some skills are never offered. Shorten the longest "
-            f"`summary:` fields in Skills/."]
+            f"Past it, some skills are never offered. Move rarely used ones to "
+            f"`skills_on_demand` in vault.config.json, which keeps them in the "
+            f"Skill Map but out of the startup list, or shorten the longest "
+            f"`summary:` fields."]
 
 
 # Anthropic, on the file agents load automatically: "Target under 200 lines per

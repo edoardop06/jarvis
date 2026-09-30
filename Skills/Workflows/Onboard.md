@@ -113,6 +113,12 @@ Note in Active Context which connector they are using, so a later agent does not
 
 When somebody does want it, then and only then: their own Google Cloud project and OAuth client, never shared between vaults; `google_account` set in `vault.config.json`, which the tool refuses to run without rather than guessing; the `doctor` command to confirm the connected account is the expected one; and secrets in `credentials/` at the vault root, gitignored, never inside `System/`. Never paste a credential into chat: create the placeholder file and have them paste it into their editor.
 
+### Decide what loads at startup
+
+Every procedure an agent is offered at startup costs space in every session, and past the limit some are silently never offered. A new vault therefore starts with the optional integrations and the maintenance procedures listed under `skills_on_demand` in `vault.config.json`: they stay in the [[Maps & Manuals/Skill Map|Skill Map]], marked "on demand", but are not offered unasked.
+
+Ask which of these they will actually use, in plain words: the vault's own Google access, an old Outlook mailbox, Telegram from the phone, a Discord support channel. **Remove from the list each one they connect or expect to use**, then run `python3 System/scripts/build_views.py` so the change takes effect. Leave the rest: any of them can be moved back later with one line, and an on-demand procedure can always be called by name.
+
 ### Put the weekly reminder in their calendar
 
 **Do this before leaving Stage 4, using the calendar just connected.** Create a recurring weekly event, about 20 minutes, on a day they choose, titled something like "AI OS: weekly check" with the body: *say `/weekly-maintenance` to your agent*.

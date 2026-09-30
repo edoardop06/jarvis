@@ -10,6 +10,19 @@ Versions are git tags. To see which one you have: `git -C System describe --tags
 
 ---
 
+## Jarvis v1.4 (2026-09-30)
+
+**Added**
+
+- **Procedures you rarely use no longer take startup space.** Every procedure your agent is offered at startup costs room in every session, and past the limit some are silently never offered. Any procedure listed under `skills_on_demand` in `vault.config.json` stays in the Skill Map, marked "on demand", and the agent still finds it there when nothing else fits, or when you call it by name; it just is not offered unasked. A vault without that line works exactly as before.
+- **A new vault starts lean.** The optional integrations (Google, Outlook, Telegram, Discord) and three maintenance procedures start on demand, which puts the startup list at about half its limit. During `/onboard` your agent asks which services you actually use and moves those back.
+
+**Changed**
+
+- **The warning about a full startup list now names this fix first**, before shortening descriptions.
+
+---
+
 ## Jarvis v1.3 (2026-09-30)
 
 **Fixed**

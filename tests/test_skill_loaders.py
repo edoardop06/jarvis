@@ -111,5 +111,40 @@ class SkillLoaderTests(unittest.TestCase):
                 self.assertIn(first_trigger, description[:60])
 
 
+    def test_on_demand_skills_stay_in_the_map_but_not_at_startup(self):
+        """A vault can keep rarely used skills out of the startup list.
+
+        Every exposed skill costs startup space in every session, including
+        integrations the owner never connected. Listing a skill id under
+        `skills_on_demand` in vault.config.json removes its loader, so it is no
+        longer offered at startup, while the Skill Map still lists it for an
+        agent that goes looking. A vault without the key behaves as before.
+        """
+        module = load_module()
+        with tempfile.TemporaryDirectory() as tmp_dir:
+            vault = Path(tmp_dir)
+            system = vault / "System"
+            shutil.copytree(ROOT / "Skills", system / "Skills")
+            setattr(module, "VAULT", vault)
+            setattr(module, "SYSTEM", system)
+            module.generate_loaders(check=False)
+            self.assertTrue((vault / ".claude/skills/workflow-decide/SKILL.md").exists())
+
+            (vault / "vault.config.json").write_text(
+                json.dumps({"skills_on_demand": ["workflow-decide"]}), encoding="utf-8")
+            changed = module.generate_loaders(check=False)
+            self.assertTrue(any("workflow-decide" in c for c in changed))
+            for tree in (".claude/skills", ".agents/skills"):
+                self.assertFalse((vault / tree / "workflow-decide/SKILL.md").exists())
+            self.assertTrue((vault / ".claude/skills/workflow-roast/SKILL.md").exists())
+            self.assertEqual([], module.generate_loaders(check=True))
+
+            rows = module.render_skill_map_workflows().splitlines()
+            decide = [r for r in rows if "Workflows/Decide" in r]
+            roast = [r for r in rows if "Workflows/Roast" in r]
+            self.assertTrue(decide[0].rstrip().endswith("| on demand |"))
+            self.assertTrue(roast[0].rstrip().endswith("| yes |"))
+
+
 if __name__ == "__main__":
     unittest.main()
