@@ -1,0 +1,11 @@
+{
+  "google_account": "",
+  "onboarding_stage": 0,
+  "owner_name": "",
+  "primary_language": "it",
+  "remote_agent": "claude",
+  "remote_models": {},
+  "telegram_allowed_ids": [],
+  "timezone": "Europe/Rome",
+  "vault_name": "Jarvis"
+}
