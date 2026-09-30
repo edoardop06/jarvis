@@ -10,12 +10,29 @@ Versions are git tags. To see which one you have: `git -C System describe --tags
 
 ---
 
+## Jarvis v1.1 (2026-09-30)
+
+**Changed**
+
+- **Installing with a double click works on Mac, Windows and Linux.** There is one launcher per system at the top of the repository: `Installa Jarvis - Mac.command`, `Installa Jarvis - Windows.bat`, `Installa Jarvis - Linux.sh`. Each one checks that git and Python are there, installs them if they are missing (Windows through winget, Linux through the system's package manager), then hands over to `scripts/installa_jarvis.py`, which does the same steps everywhere.
+
+**Fixed**
+
+- **The automatic checks now run on Windows.** The safety check before every command, the session heartbeat and the check before every save all called `python3`, a name Windows installs from python.org do not have, so they failed on every call. They now go through `scripts/py`, which finds whichever Python 3 the machine has and skips the fake one Windows ships to open the Microsoft Store. After updating, copy `System/claude-settings.json` to `.claude/settings.json` as usual.
+- **Windows is also allowed `python` for the lint and view commands**, so it is not asked for permission where a Mac is not.
+
+**Also**
+
+- **The front page explains what Jarvis is to someone who has never seen it**, in Italian, with pictures: a personal assistant that learns its owner from the first conversation, optimised for Claude and usable with the other tools that read `AGENTS.md`. It names no one, because whoever installs it gets their own assistant, not someone else's.
+
+---
+
 ## Jarvis v1.0 (2026-09-30)
 
 **Changed**
 
 - **The system now lives in its own repository**, with its own history starting here. New vaults are installed from it, and updates come only from it.
-- **A new Mac can be set up with a double click.** `Installa Jarvis.command` at the top of the repository asks for the vault's name and place, then does every step of [[System/SETUP|SETUP]] section 3 by itself.
+- **A new Mac can be set up with a double click.** `Installa Jarvis.command` at the top of the repository (Mac only in this version) asks for the vault's name and place, then does every step of [[System/SETUP|SETUP]] section 3 by itself.
 - **A fresh vault starts in Italian**, on Rome time and named Jarvis, instead of in English.
 
 ---

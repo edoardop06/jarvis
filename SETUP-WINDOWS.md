@@ -2,6 +2,8 @@
 
 The Mac version of this checklist is in [[SETUP|SETUP]]. This one covers the same ground for Windows, where a handful of things genuinely differ.
 
+**The quick way is `Installa Jarvis - Windows.bat`**, described in [[README|README]]: it installs Git and Python through winget when they are missing and then does section 3 by itself. This page is the same thing by hand.
+
 **Roughly an evening**, most of it waiting on downloads. Work through it *with* the new owner rather than for them: they will be alone with this later, so they need to have seen each piece once.
 
 ---

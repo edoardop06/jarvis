@@ -51,11 +51,19 @@ class SharedFileScopeTests(unittest.TestCase):
         self.assertFalse([f for f in files if f.startswith("evaluations/")])
 
     def test_a_personal_name_in_any_shipped_file_is_reported(self):
+        # The checker only knows the names it can read on this machine, so the
+        # planted name is one of those, not a fixed one that passes on one
+        # laptop and fails on the next.
+        vault = self.mod.vault_root()
+        known = self.mod.git_identity_terms() + (self.mod.derived_terms(vault) if vault else [])
+        if not known:
+            self.skipTest("no git identity or vault owner to plant")
+        name = known[0][0]
         planted = ROOT / "Skills/Workflows/Session Handover.md"
         original = planted.read_text(encoding="utf-8")
         try:
             planted.write_text(
-                original + "\nPush only when Mario has asked for it.\n",
+                original + f"\nPush only when {name} has asked for it.\n",
                 encoding="utf-8")
             problems = self.mod.check_all()
             self.assertTrue(

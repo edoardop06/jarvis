@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="400" viewBox="0 0 1280 400">
+  <defs>
+    <linearGradient id="sfondo" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#07152e"/>
+      <stop offset="1" stop-color="#0f3466"/>
+    </linearGradient>
+    <marker id="freccia" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+      <path d="M0 0 L10 5 L0 10 z" fill="#5fe3ff"/>
+    </marker>
+  </defs>
+  <style>
+    .t { font-family: -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif; fill: #ffffff; }
+    .titolo { font-size: 30px; font-weight: 700; }
+    .testo { font-size: 19px; fill: #cfe6ff; }
+    .icona { font-size: 54px; }
+    .etichetta { font-size: 18px; fill: #8cf0ff; }
+  </style>
+
+  <rect width="1280" height="400" rx="24" fill="url(#sfondo)"/>
+
+  <g transform="translate(60 70)">
+    <rect width="320" height="230" rx="20" fill="#0b2c5c" stroke="#5fe3ff" stroke-width="2"/>
+    <text class="t icona" x="160" y="78" text-anchor="middle">🙋</text>
+    <text class="t titolo" x="160" y="130" text-anchor="middle">Tu</text>
+    <text class="t testo" x="160" y="168" text-anchor="middle">chiedi le cose</text>
+    <text class="t testo" x="160" y="194" text-anchor="middle">come a una persona</text>
+  </g>
+
+  <g transform="translate(480 70)">
+    <rect width="320" height="230" rx="20" fill="#123d7a" stroke="#8cf0ff" stroke-width="3"/>
+    <g transform="translate(160 58)">
+      <circle r="30" fill="none" stroke="#8cf0ff" stroke-width="3"/>
+      <circle r="21" fill="#0a2248" stroke="#2f8bff" stroke-width="2"/>
+      <path d="M5 -12 V5 A8 8 0 0 1 -11 5" fill="none" stroke="#ffffff" stroke-width="4.5" stroke-linecap="round"/>
+      <g fill="#8cf0ff"><circle cy="-30" r="3.5"/><circle cx="30" r="3.5"/><circle cy="30" r="3.5"/><circle cx="-30" r="3.5"/></g>
+    </g>
+    <text class="t titolo" x="160" y="130" text-anchor="middle">Jarvis</text>
+    <text class="t testo" x="160" y="168" text-anchor="middle">l'agente che lavora,</text>
+    <text class="t testo" x="160" y="194" text-anchor="middle">dentro Claude Code</text>
+  </g>
+
+  <g transform="translate(900 70)">
+    <rect width="320" height="230" rx="20" fill="#0b2c5c" stroke="#5fe3ff" stroke-width="2"/>
+    <text class="t icona" x="160" y="78" text-anchor="middle">🧠</text>
+    <text class="t titolo" x="160" y="130" text-anchor="middle">La tua memoria</text>
+    <text class="t testo" x="160" y="168" text-anchor="middle">note, regole e procedure</text>
+    <text class="t testo" x="160" y="194" text-anchor="middle">sul tuo computer</text>
+  </g>
+
+  <g stroke="#5fe3ff" stroke-width="3" fill="none" marker-end="url(#freccia)">
+    <path d="M388 185 H470"/>
+    <path d="M808 160 H890"/>
+    <path d="M890 210 H818"/>
+  </g>
+  <text class="t etichetta" x="849" y="146" text-anchor="middle">annota</text>
+  <text class="t etichetta" x="854" y="238" text-anchor="middle">legge</text>
+
+  <text class="t testo" x="640" y="352" text-anchor="middle">Prima di rispondere Jarvis legge quello che sa di te. Dopo, annota quello che ha imparato.</text>
+</svg>

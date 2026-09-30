@@ -4,6 +4,9 @@
       "Bash(python3 System/scripts/vault_lint.py)",
       "Bash(python3 System/scripts/build_views.py)",
       "Bash(python3 System/scripts/build_views.py --check)",
+      "Bash(python System/scripts/vault_lint.py)",
+      "Bash(python System/scripts/build_views.py)",
+      "Bash(python System/scripts/build_views.py --check)",
       "Bash(./System/scripts/weekly_maintenance.sh)",
       "Bash(git status)",
       "Bash(git status *)",
@@ -29,7 +32,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "python3 \"$CLAUDE_PROJECT_DIR/System/scripts/check_destructive.py\"",
+            "command": "sh \"$CLAUDE_PROJECT_DIR/System/scripts/py\" \"$CLAUDE_PROJECT_DIR/System/scripts/check_destructive.py\"",
             "statusMessage": "Checking for destructive commands..."
           }
         ]
@@ -39,7 +42,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "python3 \"$CLAUDE_PROJECT_DIR/System/scripts/sessions.py\" --beat"
+            "command": "sh \"$CLAUDE_PROJECT_DIR/System/scripts/py\" \"$CLAUDE_PROJECT_DIR/System/scripts/sessions.py\" --beat"
           }
         ]
       }
@@ -49,7 +52,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "python3 \"$CLAUDE_PROJECT_DIR/System/scripts/sessions.py\" --start",
+            "command": "sh \"$CLAUDE_PROJECT_DIR/System/scripts/py\" \"$CLAUDE_PROJECT_DIR/System/scripts/sessions.py\" --start",
             "statusMessage": "Opening a session heartbeat..."
           }
         ]

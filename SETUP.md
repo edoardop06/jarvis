@@ -4,7 +4,9 @@
 > for whoever sets the laptop up with you, and you will never need it again. If you
 > are reading it because something is broken, skip to the last section.
 
-**On Windows, use [[SETUP-WINDOWS|SETUP-WINDOWS]] instead.** Several steps genuinely differ.
+**The quick way, on any system, is in [[README|README]]:** download the ZIP and open the launcher for your system, which does section 3 by itself. This page is the same thing by hand.
+
+**On Windows, use [[SETUP-WINDOWS|SETUP-WINDOWS]] instead.** Several steps genuinely differ. **On Linux, follow this page**: the steps are the same as on a Mac, with the package manager in place of the Apple tools.
 
 For the person helping someone else get started, and for whoever comes back to do it a second time.
 

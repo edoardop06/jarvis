@@ -1,0 +1,20 @@
+#!/bin/sh
+# Run a vault script with whatever Python 3 this machine has.
+#
+# The hooks in claude-settings.json and the git hooks run on their own, so they
+# cannot rely on one name: macOS and Linux have `python3`, Windows installs from
+# python.org give `python` and `py`, and Windows ships a fake `python3` in
+# WindowsApps that only opens the Microsoft Store. Git for Windows runs this
+# through its own sh, so one file covers every platform.
+#
+#     sh System/scripts/py System/scripts/vault_lint.py
+
+for c in python3 python py; do
+    p=$(command -v "$c" 2>/dev/null) || continue
+    case "$p" in *WindowsApps*) continue ;; esac
+    [ "$c" = py ] && exec "$p" -3 "$@"
+    exec "$p" "$@"
+done
+
+echo "Python 3 not found. Install it from python.org, ticking \"Add python.exe to PATH\" on Windows." >&2
+exit 1
