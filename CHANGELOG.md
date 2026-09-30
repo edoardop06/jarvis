@@ -10,6 +10,27 @@ Versions are git tags. To see which one you have: `git -C System describe --tags
 
 ---
 
+## Jarvis v1.2 (2026-09-30)
+
+**Added**
+
+Six procedures that used to belong to one vault are now part of the system, cleaned of anything personal. Each one starts by itself when you ask in your own words.
+
+- **Ingerire una Fonte.** Give Jarvis an article, a PDF, a video or a voice note: it updates the pages you already have before creating new ones, says where every statement comes from, and tells you when the new source contradicts the old one instead of overwriting it.
+- **Interrogare il Vault.** Ask "what do I know about…": the answer comes from your own notes, with a link for every statement, and says plainly what your notes do not know. Answers worth keeping become pages.
+- **Ricerca Autonoma.** When your notes do not know something, Jarvis looks outside: three to six sources, weighed, primary sources first, and it never signs up, pays or leaves your data anywhere.
+- **Salute della Conoscenza.** A weekly check of what you know rather than of the files: contradictions, pages left behind, names that deserve a page, gaps worth researching.
+- **Provare Finché Funziona.** Making something work by trying: first decide how to tell it works, change one thing per attempt, undo attempts that make it worse, stop after three that do not help.
+- **Controllo del Codice.** Rereads code right after it changes, using the free OpenCodeReview tool to pick which files and which checks. Needs Node.js, and is installed once per computer by the agent.
+
+Plus **Motore del Wiki** (`scripts/wiki.py`), the search and link counter four of them rely on, and `scripts/banco.py`, the test bench behind Provare Finché Funziona. Both use only Python's standard library.
+
+**Also**
+
+- **New vaults start with an empty `Atlas Log`**, the running record of what happened to your knowledge, so the procedures above never point to a page that does not exist yet.
+
+---
+
 ## Jarvis v1.1 (2026-09-30)
 
 **Changed**

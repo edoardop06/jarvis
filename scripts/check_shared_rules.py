@@ -144,7 +144,9 @@ def shipped_files() -> list[Path]:
         if not base.is_dir():
             continue
         for path in sorted(base.rglob("*")):
-            if not path.is_file() or "__pycache__" in path.parts:
+            # node_modules is installed per machine and never committed, so
+            # nobody receives it; it also holds binaries that are not text.
+            if not path.is_file() or "__pycache__" in path.parts or "node_modules" in path.parts:
                 continue
             if path.suffix not in SHIPPED_SUFFIXES:
                 continue

@@ -21,7 +21,7 @@
 |---|---|
 | 🧠 **Una memoria tua** | Tutto quello che Jarvis sa di te sta in note di testo normali, sul tuo computer, che leggi e modifichi con Obsidian. |
 | 🤖 **Un agente che la usa** | Prima di risponderti legge quello che sa di te, dopo annota quello che ha imparato. Più lo usi, più ti conosce. |
-| 🧩 **Procedure pronte** | Salvare il lavoro, riassumere un articolo o un PDF, prendere una decisione, fare il punto della settimana, chiudere una giornata di lavoro. |
+| 🧩 **Procedure pronte** | Partono da sole quando chiedi le cose a parole: trasformare un articolo o un PDF in conoscenza, rispondere dalle tue note citandole, fare ricerche sul web con fonti verificate, far funzionare una cosa provando, rileggere il codice, prendere una decisione, fare il punto della settimana, salvare il lavoro. |
 | 🔒 **Privato** | Le tue note restano sul tuo computer. Niente va online se non sei tu a chiederlo. |
 | 🌍 **Non legato a un modello** | È ottimizzato per **Claude**, ma le istruzioni sono anche nel formato comune `AGENTS.md`, che leggono Codex, Cursor, OpenCode e molti altri: si può usare con la maggior parte dei modelli IA. |
 

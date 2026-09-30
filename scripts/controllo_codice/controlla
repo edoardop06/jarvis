@@ -1,0 +1,13 @@
+#!/bin/sh
+# Lancia OpenCodeReview, il controllore di codice. Si usa dalla cartella del
+# vault, per esempio:
+#   System/scripts/controllo_codice/controlla delegate preview --color never
+# La prima volta va installato: vedi System/Skills/Tools/Controllo del Codice.md.
+set -e
+cartella=$(cd "$(dirname "$0")" && pwd)
+for ocr in "$cartella/node_modules/.bin/ocr" "$cartella/node_modules/.bin/ocr.cmd"; do
+  [ -f "$ocr" ] && exec "$ocr" "$@"
+done
+echo "OpenCodeReview non e' installato in $cartella." >&2
+echo "Installalo con: npm install --prefix \"$cartella\"" >&2
+exit 1
