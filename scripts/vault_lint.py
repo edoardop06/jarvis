@@ -178,12 +178,12 @@ def check_frontmatter_parses(files):
             continue
         block = text[4:end]
         fields = [ln for ln in block.splitlines()
-                  if re.match(r"^[A-Za-z_]+:", ln)]
+                  if re.match(r"^[A-Za-z_][A-Za-z0-9_-]*:", ln)]
         if not fields:
             issues.append(f"  {f.relative_to(VAULT)}: the block at the top holds no settings at all")
             continue
         stray = [ln for ln in block.splitlines()
-                 if ln.strip() and not re.match(r"^[A-Za-z_]+:", ln) and not ln.startswith((" ", "-", "\t"))]
+                 if ln.strip() and not re.match(r"^[A-Za-z_][A-Za-z0-9_-]*:", ln) and not ln.startswith((" ", "-", "\t"))]
         if stray:
             issues.append(f"  {f.relative_to(VAULT)}: line {stray[0][:40]!r} is not a setting")
     return issues

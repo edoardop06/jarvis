@@ -10,6 +10,14 @@ Versions are git tags. To see which one you have: `git -C System describe --tags
 
 ---
 
+## Jarvis v1.5 (2026-10-08)
+
+**Fixed**
+
+- **Installed skills with a dash in their settings blocked every save.** Skills made for Claude Code use settings such as `disable-model-invocation` and `allowed-tools`. The check before every save took the dash for a broken line and refused the note. Those settings now count as settings, and a line that really is not a setting is still reported.
+
+---
+
 ## Jarvis v1.4 (2026-09-30)
 
 **Added**
