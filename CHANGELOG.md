@@ -10,6 +10,14 @@ Versions are git tags. To see which one you have: `git -C System describe --tags
 
 ---
 
+## Jarvis v1.6 (2026-11-02)
+
+**Fixed**
+
+- **The weekly metrics always showed zero tokens and zero sessions.** They looked for the agent's conversations under one fixed folder name, so any vault with a different name was never counted. They now look in the folder that belongs to your vault, whatever it is called.
+
+---
+
 ## Jarvis v1.5 (2026-10-08)
 
 **Fixed**

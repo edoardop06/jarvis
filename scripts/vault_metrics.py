@@ -30,15 +30,22 @@ def md_files():
             if not any(s in f.parts for s in (".git", ".claude", ".obsidian", "node_modules"))]
 
 
-def usage_stats(days=7):
-    """Token usage from local Claude Code transcripts (~/.claude/projects).
+def transcript_folder_name(vault):
+    """Claude Code names a project's transcript folder after its path, with every
+    character that is not a letter or digit turned into '-'."""
+    return re.sub(r"[^A-Za-z0-9]", "-", str(vault))
+
+
+def usage_stats(days=7, home=None):
+    """Token usage from this vault's Claude Code transcripts (~/.claude/projects).
     Dedupes by message id; a message can appear on multiple jsonl lines."""
     import json
     from datetime import timedelta, timezone
     cutoff = datetime.now(timezone.utc) - timedelta(days=days)
     stats = {"sessions": 0, "in": 0, "cache_read": 0, "cache_create": 0, "out": 0, "skills": 0}
     seen_msgs = set()
-    for proj in Path.home().glob(".claude/projects/*Obsidian-Vault-AI-OS*"):
+    projects = Path(home or Path.home()) / ".claude" / "projects"
+    for proj in [projects / transcript_folder_name(VAULT)]:
         for f in proj.glob("*.jsonl"):
             if datetime.fromtimestamp(f.stat().st_mtime, tz=timezone.utc) < cutoff:
                 continue
