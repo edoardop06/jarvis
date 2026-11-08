@@ -10,6 +10,14 @@ Versions are git tags. To see which one you have: `git -C System describe --tags
 
 ---
 
+## Jarvis v1.8 (2026-11-08)
+
+**Added**
+
+- **Your agent now brings a project note up to date before it stops.** Sessions often ended without a handover, so the next agent started from a project note that was weeks behind the work. Now, the first time a session stops after changing a project, it is asked once to update that project's note and save. It is not asked for projects it only read, not twice for the same project, and not after a handover. To get it in an existing vault, copy the `Stop` block from `claude-settings.json` into `.claude/settings.json`.
+
+---
+
 ## Jarvis v1.7 (2026-11-08)
 
 **Fixed**
