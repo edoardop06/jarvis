@@ -29,6 +29,7 @@ The script does the checkable half. The half it cannot do is the reason this wor
 
 - **Rewriting each effort note to say what is true now.** Replace, do not append. If it cannot be read in one screen it has failed.
 - **The fact sweep.** Anything said only in the conversation is a candidate. Then apply the keep test below.
+- **The knowledge sweep.** Did this session learn something that stays true outside this project: how a device or service really behaves, a cause behind a symptom, a procedure that worked, a trap that cost time? Put it in an Atlas note (update the one that exists, or create one with its sources), not only in the effort note, where it gets buried under the project's history. Most sessions learn nothing of the kind, and that is fine.
 - **Naming this session's mistakes.**
 - **One observation in `Private/Outside View.md`.**
 

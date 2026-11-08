@@ -10,6 +10,14 @@ Versions are git tags. To see which one you have: `git -C System describe --tags
 
 ---
 
+## Jarvis v1.9 (2026-11-08)
+
+**Changed**
+
+- **Closing a session now asks whether anything was learned that outlives the project.** How a device really behaves, the cause behind a symptom, a procedure that worked: that kind of knowledge used to stay buried in project notes, under their history. The session handover now moves it into a knowledge note, so the permanent part of the vault grows by itself. Most sessions learn nothing of the kind, and the step says that is fine.
+
+---
+
 ## Jarvis v1.8 (2026-11-08)
 
 **Added**
