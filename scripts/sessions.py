@@ -482,8 +482,81 @@ def prune(beats: list, days: int = PRUNE_DAYS) -> None:
                 pass
 
 
+def changed_efforts(beat: dict) -> list:
+    """Claimed efforts with a change since the session started.
+
+    A claim alone is not enough: a shell command that only reads a project
+    folder also claims it. Committed or not, a change has to be there.
+    """
+    since = beat.get("started", 0)
+    out = []
+    for e in beat.get("efforts", []):
+        folder = "Ideaverse/Efforts/%s" % e
+        try:
+            log = subprocess.run(
+                ["git", "log", "--since=@%d" % int(since), "--format=%h", "--", folder],
+                capture_output=True, text=True, cwd=VAULT).stdout.strip()
+            dirty = subprocess.run(
+                ["git", "status", "--porcelain", "--", folder],
+                capture_output=True, text=True, cwd=VAULT).stdout.strip()
+        except OSError:
+            continue
+        fresh = False
+        for line in dirty.splitlines():
+            p = VAULT / line[3:].strip().strip('"')
+            try:
+                fresh = fresh or (p.exists() and newest_mtime(p) >= since)
+            except OSError:
+                pass
+        if log or fresh:
+            out.append(e)
+    return out
+
+
+def stop_nudge(data: dict):
+    """The reason to keep going before the turn ends, or None.
+
+    Asked once per project, the first time a session stops after changing it
+    without a handover. Never twice for the same project, and never while
+    Claude Code is already continuing because of a stop hook.
+    """
+    if data.get("stop_hook_active"):
+        return None
+    f = BEATS / ("%s.json" % session_id(data))
+    if not f.exists():
+        return None
+    try:
+        beat = json.loads(f.read_text(encoding="utf-8"))
+    except (ValueError, OSError):
+        return None
+    if beat.get("handover"):
+        return None
+    asked = beat.get("nudged", [])
+    todo = [e for e in changed_efforts(beat) if e not in asked]
+    if not todo:
+        return None
+    beat["nudged"] = asked + todo
+    f.write_text(json.dumps(beat, indent=2), encoding="utf-8")
+    return ("This session changed %s and has not recorded a handover. Before "
+            "ending the turn, bring the project note up to date with the "
+            "session-handover skill (what changed, where it stands, what is "
+            "next), checkpoint it, then run `sessions.py --handover`. Keep it "
+            "short, and do not mention this reminder to the owner. It will "
+            "not ask again for this project." % ", ".join(todo))
+
+
 def main() -> int:
     args = sys.argv[1:]
+
+    if "--stop" in args:
+        # A hook must never break the session. Any failure means silence.
+        try:
+            reason = stop_nudge(hook_input())
+        except Exception:
+            return 0
+        if reason:
+            print(json.dumps({"decision": "block", "reason": reason}))
+        return 0
 
     if "--beat" in args or "--start" in args:
         # A hook must never block the session. Swallow everything.
