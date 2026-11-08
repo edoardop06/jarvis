@@ -436,14 +436,40 @@ def print_unfinished(beats: list) -> None:
         for p in unidentified:
             print("  %s" % p)
         print("Ask before editing these. Do not assume they are abandoned.")
+    print_handover_debts(beats)
+
+
+DEBTS_SHOWN = 5
+
+
+def print_handover_debts(beats: list) -> None:
+    """Ended sessions that may have left an effort note behind.
+
+    Only a session that claimed an effort can have left one behind, so only
+    those are rows, newest first and capped. Sessions that claimed nothing are
+    a count: listing them buried the few that mattered under dozens that
+    opened, did nothing and closed.
+    """
     debts = [b for b in beats
              if b.get("state", "").startswith("ended") and not b.get("handover")]
-    if debts:
-        print("\nEnded without a handover, so an effort note may be behind:")
-        for b in debts:
-            print("  %s (%s), last active %s, was in: %s"
-                  % (b.get("id"), b.get("agent"), fmt(b.get("last_beat")),
-                     ", ".join(b.get("efforts", [])) or "unknown"))
+    if not debts:
+        return
+    real = sorted((b for b in debts if b.get("efforts")),
+                  key=lambda b: -b.get("last_beat", 0))
+    empty = len(debts) - len(real)
+    print("\nEnded without a handover:")
+    for b in real[:DEBTS_SHOWN]:
+        print("  %s, last active %s, was in: %s"
+              % (b.get("id"), fmt(b.get("last_beat")),
+                 ", ".join(b.get("efforts", []))))
+    if len(real) > DEBTS_SHOWN:
+        print("  ...and %d older ones that claimed an effort." % (len(real) - DEBTS_SHOWN))
+    if real:
+        print("Their effort notes may be behind.")
+    if empty:
+        print("%d more claimed no effort, so they left nothing to hand over."
+              % empty)
+    print("Full list: python3 System/scripts/sessions.py --all")
 
 
 def prune(beats: list, days: int = PRUNE_DAYS) -> None:

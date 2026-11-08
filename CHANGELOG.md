@@ -10,6 +10,14 @@ Versions are git tags. To see which one you have: `git -C System describe --tags
 
 ---
 
+## Jarvis v1.7 (2026-11-08)
+
+**Fixed**
+
+- **Every session opened with a long list of past sessions that "ended without a handover".** Most of them had opened, done nothing and closed, so the few that really left work behind were lost in the crowd, and the list cost room at every start. Now only sessions that worked on a project are listed, the five most recent, and the others are a single count. The full history is still there with `sessions.py --all`.
+
+---
+
 ## Jarvis v1.6 (2026-11-02)
 
 **Fixed**

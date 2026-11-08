@@ -92,5 +92,54 @@ class StartupTableStaysSmallTests(unittest.TestCase):
         self.assertIn("not proof", out)
 
 
+def render_debts(mod, beats):
+    buf = io.StringIO()
+    with redirect_stdout(buf):
+        mod.print_handover_debts(beats)
+    return buf.getvalue()
+
+
+class HandoverDebtsStaySmallTests(unittest.TestCase):
+    """The same flood came back through the handover list.
+
+    A vault showed 57 sessions "ended without a handover" at every startup,
+    54 of them sessions that claimed no effort: opened, did nothing, closed.
+    The three that mattered were lost among them.
+    """
+
+    def setUp(self):
+        self.mod = load()
+
+    def crowded(self):
+        real = [beat(self.mod, "real%04d" % i, "ended", ["Startup Ideas"],
+                     age_min=60 + i) for i in range(3)]
+        empty = [beat(self.mod, "void%04d" % i, "ended", (), age_min=600 + i)
+                 for i in range(54)]
+        return real + empty
+
+    def test_sessions_that_claimed_an_effort_are_listed(self):
+        out = render_debts(self.mod, self.crowded())
+        for i in range(3):
+            self.assertIn("real%04d" % i, out)
+
+    def test_sessions_that_claimed_nothing_are_counted_not_listed(self):
+        out = render_debts(self.mod, self.crowded())
+        self.assertNotIn("void0000", out)
+        self.assertIn("54", out)
+
+    def test_the_list_fits_on_a_screen(self):
+        many = [beat(self.mod, "work%04d" % i, "ended", ["Startup Ideas"],
+                     age_min=60 + i) for i in range(30)]
+        out = render_debts(self.mod, many)
+        self.assertLessEqual(len(out.split()), MAX_STARTUP_WORDS)
+        self.assertIn("work0000", out)  # the most recent stays visible
+
+    def test_handed_over_and_live_sessions_are_not_debts(self):
+        done = beat(self.mod, "done0001", "ended", ["Startup Ideas"])
+        done["handover"] = True
+        live = beat(self.mod, "live0001", "ACTIVE", ["Startup Ideas"])
+        self.assertEqual(render_debts(self.mod, [done, live]), "")
+
+
 if __name__ == "__main__":
     unittest.main()
