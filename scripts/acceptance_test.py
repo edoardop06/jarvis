@@ -21,6 +21,7 @@ from __future__ import annotations
 
 import json
 import re
+import subprocess
 import sys
 from pathlib import Path
 
@@ -107,8 +108,16 @@ def main() -> int:
 
     # 7. Secrets are not about to be committed.
     gi = read(".gitignore")
-    for pattern in ("credentials/", "*.json.key", "vault.config.json"):
+    for pattern in ("credentials/", "*.json.key"):
         check(f"gitignore covers {pattern}", pattern in gi)
+    # vault.config.json holds identity, not secrets. The template keeps it out
+    # of git by default; an owner may choose to track it, and that is not a fault.
+    tracked = subprocess.run(
+        ["git", "-C", str(VAULT), "ls-files", "--error-unmatch", "vault.config.json"],
+        capture_output=True,
+    ).returncode == 0
+    check("vault.config.json is ignored, or tracked by the owner's choice",
+          "vault.config.json" in gi or tracked)
 
     # 8. A per-vault identity exists, since tools refuse to guess one.
     cfg = VAULT / "vault.config.json"

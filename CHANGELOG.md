@@ -10,6 +10,14 @@ Versions are git tags. To see which one you have: `git -C System describe --tags
 
 ---
 
+## Jarvis v1.11 (2026-11-16)
+
+**Fixed**
+
+- **The setup check no longer fails when you choose to keep your vault settings in git.** It treated `vault.config.json` like a secret key and failed if it was not excluded. The file holds your name, language and similar settings, not passwords. New vaults still keep it out by default; if you decide to include it, the check now accepts that. Secret keys must still be excluded, exactly as before.
+
+---
+
 ## Jarvis v1.10 (2026-11-16)
 
 **Added**
