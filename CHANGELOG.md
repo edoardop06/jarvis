@@ -10,6 +10,14 @@ Versions are git tags. To see which one you have: `git -C System describe --tags
 
 ---
 
+## Jarvis v1.10 (2026-11-16)
+
+**Added**
+
+- **Your agent now checks a connector's version before adding it.** Local connectors (MCP servers) are often written so that they download "the latest version" every time they start. What was looked at and approved is then not what runs next week, and nobody notices because the settings did not change. The new skill *Controllo prima di Installare* reads the settings as text, without running anything, marks each connector as fixed, movable or to be reviewed, and proposes fixing the movable ones to the version already in use. Whether to give up automatic updates for stability stays your choice. Adapted from the open-source ECC project (MIT licence).
+
+---
+
 ## Jarvis v1.9 (2026-11-08)
 
 **Changed**
