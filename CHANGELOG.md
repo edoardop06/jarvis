@@ -10,6 +10,14 @@ Versions are git tags. To see which one you have: `git -C System describe --tags
 
 ---
 
+## Jarvis v1.12 (2026-11-25)
+
+**Fixed**
+
+- **The vault check no longer reads the folder a code package builds itself.** If you keep an app's source code in your vault, the compiler downloads other projects into a `.build` folder next to it, with their own readmes and instruction files. The check counted them as your notes, reported dozens of them as unlinked, and blocked saving. It now skips `.build`, as it already skipped `node_modules`. Your notes are checked exactly as before.
+
+---
+
 ## Jarvis v1.11 (2026-11-16)
 
 **Fixed**

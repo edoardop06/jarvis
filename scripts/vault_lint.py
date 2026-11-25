@@ -76,7 +76,9 @@ ALLOWED_STATUSES = {
     "processed", "archived", "deprecated", "closed",
 }
 STALE_DAYS = 30
-IGNORED_DIR_NAMES = {".git", ".obsidian", "node_modules"}
+# `.build` is the folder a compiler fills for a code package kept in the vault:
+# other projects' readmes and AGENTS.md, rebuilt at will, not the owner's notes.
+IGNORED_DIR_NAMES = {".git", ".obsidian", "node_modules", ".build"}
 
 
 def is_host_managed_worktree(path: Path) -> bool:
